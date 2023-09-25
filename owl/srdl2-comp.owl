@@ -1,21 +1,20 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="http://knowrob.org/kb/srdl2-comp.owl#"
      xml:base="http://knowrob.org/kb/srdl2-comp.owl"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:xml="http://www.w3.org/XML/1998/namespace"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
      xmlns:srdl2="http://knowrob.org/kb/srdl2.owl#"
-     xmlns:knowrob="http://knowrob.org/kb/knowrob.owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
-     xmlns:qudt-unit="http://qudt.org/vocab/unit#"
-     xmlns:srdl2-comp="http://knowrob.org/kb/srdl2-comp.owl#">
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:knowrob="http://knowrob.org/kb/knowrob.owl#"
+     xmlns:srdl2-comp="http://knowrob.org/kb/srdl2-comp.owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:qudt-unit="http://qudt.org/vocab/unit#">
     <owl:Ontology rdf:about="http://knowrob.org/kb/srdl2-comp.owl">
-        <owl:imports rdf:resource="package://knowrob/owl/URDF.owl"/>
         <owl:imports rdf:resource="package://knowrob/owl/knowrob.owl"/>
-        <owl:imports rdf:resource="package://knowrob/owl/srdl2-cap.owl"/>
+        <owl:imports rdf:resource="package://knowrob/owl/URDF.owl"/>
     </owl:Ontology>
     
 
@@ -45,12 +44,6 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
-
-
-    <!-- http://knowrob.org/kb/srdl2-cap.owl#hasCapability -->
-
-    <owl:ObjectProperty rdf:about="http://knowrob.org/kb/srdl2-cap.owl#hasCapability"/>
     
 
 
@@ -151,21 +144,9 @@
     
 
 
-    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasComponent -->
-
-    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasComponent"/>
-    
-
-
     <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasRegion -->
 
     <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasRegion"/>
-    
-
-
-    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isComponentOf -->
-
-    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isComponentOf"/>
     
 
 
@@ -300,18 +281,6 @@
     
 
 
-    <!-- http://knowrob.org/kb/srdl2-cap.owl#AcousticPerceptionCapability -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/srdl2-cap.owl#AcousticPerceptionCapability"/>
-    
-
-
-    <!-- http://knowrob.org/kb/srdl2-cap.owl#VisualPerceptionCapability -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/srdl2-cap.owl#VisualPerceptionCapability"/>
-    
-
-
     <!-- http://knowrob.org/kb/srdl2-comp.owl#Accelerometer -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#Accelerometer">
@@ -325,30 +294,6 @@
 
     <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#Architecture">
         <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject"/>
-    </owl:Class>
-    
-
-
-    <!-- http://knowrob.org/kb/srdl2-comp.owl#AuditorySensoryComponent -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#AuditorySensoryComponent">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#PerceptionComponent"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isComponentOf"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Agent"/>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://knowrob.org/kb/srdl2-cap.owl#hasCapability"/>
-                                <owl:someValuesFrom rdf:resource="http://knowrob.org/kb/srdl2-cap.owl#AcousticPerceptionCapability"/>
-                            </owl:Restriction>
-                        </owl:intersectionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -371,18 +316,10 @@
     
 
 
-    <!-- http://knowrob.org/kb/srdl2-comp.owl#Camera -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#Camera">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#VisualSensoryComponent"/>
-    </owl:Class>
-    
-
-
     <!-- http://knowrob.org/kb/srdl2-comp.owl#Classifier -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#Classifier">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#DesignedSoftware"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#SoftwareType"/>
     </owl:Class>
     
 
@@ -390,7 +327,6 @@
     <!-- http://knowrob.org/kb/srdl2-comp.owl#ColorCamera -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#ColorCamera">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#Camera"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#LightWaveSensor"/>
         <owl:disjointWith rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#MonochromeCamera"/>
         <rdfs:comment>A sensor device that measures light waves to create a picture where the light waves are encoded in some color space.</rdfs:comment>
@@ -416,14 +352,6 @@
     
 
 
-    <!-- http://knowrob.org/kb/srdl2-comp.owl#DesignedSoftware -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#DesignedSoftware">
-        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject"/>
-    </owl:Class>
-    
-
-
     <!-- http://knowrob.org/kb/srdl2-comp.owl#DistanceSensor -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#DistanceSensor">
@@ -433,18 +361,10 @@
     
 
 
-    <!-- http://knowrob.org/kb/srdl2-comp.owl#Eye -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#Eye">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#VisualSensoryComponent"/>
-    </owl:Class>
-    
-
-
     <!-- http://knowrob.org/kb/srdl2-comp.owl#FeatureExtractor -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#FeatureExtractor">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#DesignedSoftware"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#SoftwareType"/>
     </owl:Class>
     
 
@@ -533,7 +453,7 @@
     <!-- http://knowrob.org/kb/srdl2-comp.owl#KnowledgeBase -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#KnowledgeBase">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#DesignedSoftware"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#SoftwareType"/>
     </owl:Class>
     
 
@@ -574,7 +494,6 @@
 
     <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#LightWaveSensor">
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#SensorDevice"/>
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#VisualSensoryComponent"/>
         <rdfs:comment>A sensor device that measures light waves.</rdfs:comment>
     </owl:Class>
     
@@ -583,7 +502,7 @@
     <!-- http://knowrob.org/kb/srdl2-comp.owl#LocalizationSoftware -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#LocalizationSoftware">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#DesignedSoftware"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#SoftwareType"/>
         <rdfs:comment>Software components that allow the robot to localize itself</rdfs:comment>
     </owl:Class>
     
@@ -601,7 +520,7 @@
     <!-- http://knowrob.org/kb/srdl2-comp.owl#MappingSoftware -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#MappingSoftware">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#DesignedSoftware"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#SoftwareType"/>
         <rdfs:comment>Software components that build environment maps from sensor data</rdfs:comment>
     </owl:Class>
     
@@ -661,7 +580,6 @@
     <!-- http://knowrob.org/kb/srdl2-comp.owl#MonochromeCamera -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#MonochromeCamera">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#Camera"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#LightWaveSensor"/>
         <rdfs:comment>A sensor device that measures light waves to create a picture where the light waves are encoded in monochrome color space.</rdfs:comment>
     </owl:Class>
@@ -671,7 +589,7 @@
     <!-- http://knowrob.org/kb/srdl2-comp.owl#MotionController -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#MotionController">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#DesignedSoftware"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#SoftwareType"/>
         <rdfs:comment>Software components for planning motions of components of the robot (arms, hands,...)</rdfs:comment>
     </owl:Class>
     
@@ -680,7 +598,7 @@
     <!-- http://knowrob.org/kb/srdl2-comp.owl#NaturalLanguageSoftware -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#NaturalLanguageSoftware">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#DesignedSoftware"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#SoftwareType"/>
     </owl:Class>
     
 
@@ -714,7 +632,7 @@
     <!-- http://knowrob.org/kb/srdl2-comp.owl#PathPlanner -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#PathPlanner">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#DesignedSoftware"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#SoftwareType"/>
     </owl:Class>
     
 
@@ -727,38 +645,11 @@
     
 
 
-    <!-- http://knowrob.org/kb/srdl2-comp.owl#PerceptionComponent -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#PerceptionComponent">
-        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#FunctionalPart"/>
-    </owl:Class>
-    
-
-
     <!-- http://knowrob.org/kb/srdl2-comp.owl#PerceptionSoftware -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#PerceptionSoftware">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#DesignedSoftware"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#SoftwareType"/>
         <rdfs:comment>Software components that interpret sensor data to perceive the environment</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://knowrob.org/kb/srdl2-comp.owl#PerceptualAgent -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#PerceptualAgent">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalAgent"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasComponent"/>
-                        <owl:someValuesFrom rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#VisualSensoryComponent"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalAgent"/>
     </owl:Class>
     
 
@@ -766,7 +657,7 @@
     <!-- http://knowrob.org/kb/srdl2-comp.owl#PlanExecutive -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#PlanExecutive">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#DesignedSoftware"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#SoftwareType"/>
     </owl:Class>
     
 
@@ -809,7 +700,7 @@
     <!-- http://knowrob.org/kb/srdl2-comp.owl#Reasoner -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#Reasoner">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#DesignedSoftware"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#SoftwareType"/>
     </owl:Class>
     
 
@@ -833,7 +724,7 @@
     <!-- http://knowrob.org/kb/srdl2-comp.owl#RobotControlSystem -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#RobotControlSystem">
-        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#DigitalResource"/>
     </owl:Class>
     
 
@@ -841,7 +732,7 @@
     <!-- http://knowrob.org/kb/srdl2-comp.owl#Simulator -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#Simulator">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#DesignedSoftware"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#SoftwareType"/>
         <rdfs:comment>Software components that allow the robot to simulate its environment or its actions</rdfs:comment>
     </owl:Class>
     
@@ -851,7 +742,6 @@
 
     <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#SoundWaveSensor">
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#SensorDevice"/>
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#AuditorySensoryComponent"/>
         <rdfs:comment>A sensor device that measures sound waves.</rdfs:comment>
     </owl:Class>
     
@@ -860,7 +750,6 @@
     <!-- http://knowrob.org/kb/srdl2-comp.owl#StereoCamera -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#StereoCamera">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#Camera"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#DistanceSensor"/>
         <rdfs:comment>A sensor device measuring distance to surfaces of objects facing the camera to create a depth picture.</rdfs:comment>
     </owl:Class>
@@ -879,7 +768,7 @@
     <!-- http://knowrob.org/kb/srdl2-comp.owl#TaskPlanner -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#TaskPlanner">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#DesignedSoftware"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#SoftwareType"/>
     </owl:Class>
     
 
@@ -889,30 +778,6 @@
     <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#TrackedBase">
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#MobileBase"/>
         <rdfs:comment>A robot base mounted on a track that is followed by the robot.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://knowrob.org/kb/srdl2-comp.owl#VisualSensoryComponent -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/srdl2-comp.owl#VisualSensoryComponent">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/srdl2-comp.owl#PerceptionComponent"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isComponentOf"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Agent"/>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://knowrob.org/kb/srdl2-cap.owl#hasCapability"/>
-                                <owl:someValuesFrom rdf:resource="http://knowrob.org/kb/srdl2-cap.owl#VisualPerceptionCapability"/>
-                            </owl:Restriction>
-                        </owl:intersectionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1000,9 +865,15 @@
     
 
 
-    <!-- http://www.ease-crc.org/ont/SOMA.owl#FunctionalPart -->
+    <!-- http://www.ease-crc.org/ont/SOMA.owl#DigitalObject -->
 
-    <owl:Class rdf:about="http://www.ease-crc.org/ont/SOMA.owl#FunctionalPart"/>
+    <owl:Class rdf:about="http://www.ease-crc.org/ont/SOMA.owl#DigitalObject"/>
+    
+
+
+    <!-- http://www.ease-crc.org/ont/SOMA.owl#SoftwareType -->
+
+    <owl:Class rdf:about="http://www.ease-crc.org/ont/SOMA.owl#SoftwareType"/>
     
 
 
@@ -1024,12 +895,6 @@
     
 
 
-    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Agent -->
-
-    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Agent"/>
-    
-
-
     <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Description -->
 
     <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Description"/>
@@ -1048,12 +913,6 @@
     
 
 
-    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization -->
-
-    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization"/>
-    
-
-
     <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalAgent -->
 
     <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalAgent"/>
@@ -1069,9 +928,15 @@
     <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalObject -->
 
     <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalObject"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#DigitalResource -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#DigitalResource"/>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
 

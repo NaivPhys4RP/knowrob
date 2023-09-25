@@ -7,6 +7,7 @@
 :- use_module('QUDT').
 :- use_module('DUL').
 :- use_module('SOMA').
+:- use_module('neem-interface').
 
 :- use_module('terms').
 

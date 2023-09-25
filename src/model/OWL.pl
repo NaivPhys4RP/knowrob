@@ -20,6 +20,7 @@
 	  disjoint_with_direct(r,r),
 	  has_equivalent_class(r,r),
 	  has_description(r,t),
+	  is_element_of(r,t),
 	  same_as(r,r),
 	  instance_of_description(r,t)
 	]).
@@ -270,6 +271,7 @@ is_intersection_of(IntersectionClass, intersection_of(List_pl)) ?>
 % @param Descr Prolog term representing the class
 %
 is_complement_of(ComplementClass, complement_of(Class)) ?+>
+
 	triple(ComplementClass, owl:complementOf, Class).
 
 
@@ -385,6 +387,18 @@ has_equivalent_class(X,Y) ?>
 
 has_equivalent_class(X,Y) +>
 	triple(X, owl:equivalentClass, Y).
+	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% is_element_of(?ElementClass, +List_rdf) is semidet
+% writing a predicate to extract all the individual of  a list
+
+is_element_of(ElementClass, List_rdf) :-
+	triple(List_rdf, rdf:first, ElementClass);
+	(triple(List_rdf, rdf:rest, RestList_rdf),
+	is_element_of(ElementClass,RestList_rdf)).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% same_as(?X, ?Y) is nondet.
 %
@@ -569,7 +583,7 @@ model_RDFS:subclass_of(Class, Descr) ?>
 	pragma(is_owl_term(Descr)),
 	subclass_of_description(Class, Descr).
 
-%%
+%%holds
 % Allow OWL descriptions in holds expressions.
 %
 %lang_holds:holds(S,P,O) ?>

@@ -33,7 +33,6 @@
 :- use_module('scope',
 		[ universal_scope/1 ]).
 :- use_module('subgraph').
-:- use_module(library(dcg/basics)).
 
 % define some settings
 :- setting(drop_graphs, list, [user],
@@ -207,8 +206,7 @@ load_owl(URL, Options) :-
 % @param ParentGraph The parent graph name.
 %
 load_owl(URL, Scope, ParentGraph) :-
-	(	url_resolve(URL,Resolved)
-	->	log_info(db(url_resolved(URL,Resolved)))
+	(	url_resolve(URL,Resolved) -> true
 	;	Resolved=URL 
 	),
 	ontology_graph(Resolved,OntoGraph),
@@ -279,8 +277,8 @@ load_owl1(IRI, Triples, Scope, Graph) :-
 	%       the reason is that we create a search index over the value
 	%       of a triple, and that mongo cannot generate such an index
 	%       over values with special characters.
-	partition(is_annotation_triple(Terms), Terms,
-		AnnotationTriples, TripleTerms),
+	exclude(is_annotation_triple, Terms, TripleTerms),
+	include(is_annotation_triple, Terms, AnnotationTriples),
 	maplist([triple(S,P,O),annotation(S,P,O)]>>true,
 		AnnotationTriples, AnnotationTerms),
 	% FIXME: BUG: o* for subClassOf only includes direct super class
@@ -295,14 +293,6 @@ load_owl1(IRI, Triples, Scope, Graph) :-
 		),
 		kb_project(Term, Scope, [graph(Graph)])
 	).
-
-%%
-is_annotation_triple(_, triple(_,P,_)) :-
-	annotation_property(P),!.
-is_annotation_triple(Terms, triple(_,P,_)) :-
-	rdf_equal(rdf:'type',RDF_Type),
-	rdf_equal(owl:'AnnotationProperty', AnnotationProperty),
-	memberchk(triple(P, RDF_Type, string(AnnotationProperty)), Terms),!.
 
 %% load_json_rdf(FilePath) is semidet.
 %
@@ -390,14 +380,7 @@ load_rdf_(URL, Triples) :-
 load_rdf_1(URL, Triples) :-
 	% load rdf data. *Triples* is a ist of
 	% `rdf(Subject, Predicate, Object)` terms.
-	load_rdf(URL, Triples, [blank_nodes(noshare), namespaces(NSList)]),
-	% TODO load namespaces
-	forall((member(NS=Prefix, NSList),atom(NS)), (
-		rdf_register_ns(NS, Prefix, [keep(true)]),
-		% TODO namespaces should be stored in the DB too.
-		% else they are lost after the first run of knowrob.
-		true
-	)).
+	load_rdf(URL, Triples, [blank_nodes(noshare)]).
 
 %%
 convert_rdf_(IRI, rdf(S,P,O), triple(S1,P,O2)) :-
@@ -430,6 +413,10 @@ convert_rdf_value_(literal(type(Type,V_atom)), O_typed) :-
 
 convert_rdf_value_(literal(O), string(O)) :- !.
 convert_rdf_value_(        O,  string(O)) :- !.
+
+%%
+is_annotation_triple(triple(_,P,_)) :-
+	once(annotation_property(P)).
 
 % each ontology is stored in a separate graph named
 % according to the ontology
@@ -464,7 +451,7 @@ set_ontology_version(URL, Version, OntoGraph) :-
 %% get modification time of local file.
 %% this is to cause re-loading the file in case of it has changed locally.
 file_version(URL, Version) :-
-	catch(exists_file(URL), _, fail),
+	exists_file(URL),
 	!,
 	set_time_file(URL, [modified(ModStamp)],[]),
 	atom_number(Version, ModStamp).

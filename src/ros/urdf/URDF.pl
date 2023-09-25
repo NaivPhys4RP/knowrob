@@ -171,9 +171,7 @@ urdf_load(Object,URL,Options) :-
 		(	atom_concat(OptPrefix,YName,YFrame),
 			% update tf memory
 			rdf_split_url(_,OName,Y),
-			% do not create a frame for the entity if its name is equal to frame name.
-			(OName == YFrame -> true ;
-			tf_mem_set_pose(OName, [YFrame,[0,0,0],[0,0,0,1]], 0)),
+			tf_mem_set_pose(OName, [YFrame,[0,0,0],[0,0,0,1]], 0),
 			%
 			assertz(has_urdf(Y,Object))
 		)
@@ -271,8 +269,7 @@ urdf_iri(Object,URDFPrefix,Name,IRI) :-
 	%             for link individuals!!
 	%%
 	rdf_split_url(IRIPrefix,_,Object),
-	%atomic_list_concat([IRIPrefix,URDFPrefix,Name],'',IRI),
-	atomic_list_concat([IRIPrefix,Name],'',IRI).
+	atomic_list_concat([IRIPrefix,URDFPrefix,Name],'',IRI).
 
 %%
 :- rdf_meta(joint_type_iri(?,r)).
@@ -321,14 +318,14 @@ create_joint_(Object,Prefix,Name,Joint) :-
 set_links_(Part,Prefix) :-
 	(	has_base_link_name(Part,BaseLinkName)
 	->	(	urdf_iri(Part,Prefix,BaseLinkName,BaseLink),
-			(Part==BaseLink -> true ; kb_project(has_base_link(Part,BaseLink)))
+			kb_project(has_base_link(Part,BaseLink))
 		)
 	;	true
 	),!,
 	forall(
 		has_end_link_name(Part,EndLinkName),
 		(	urdf_iri(Part,Prefix,EndLinkName,EndLink),
-			(Part==EndLink -> true ; kb_project(has_end_link(Part,EndLink)))
+			kb_project(has_end_link(Part,EndLink))
 		)
 	).
 
